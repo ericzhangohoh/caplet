@@ -72,7 +72,6 @@ const ModuleDetail = () => {
   }
 
   const lessons = (module_.lessons || []).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-  const mp = progress?.moduleProgress?.find((m) => String(m.moduleId) === String(moduleId));
 
   const lessonHasContent = (l) => {
     const slides = l.slides;
