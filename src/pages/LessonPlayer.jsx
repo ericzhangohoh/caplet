@@ -413,7 +413,6 @@ const LessonPlayer = () => {
                         const options = Array.isArray(slide.options) ? slide.options : [];
                         const correctIndex = typeof slide.correctIndex === 'number' ? slide.correctIndex : 0;
                         const alreadyAnswered = quizScores[String(currentSlideIndex)] !== undefined;
-                        const isCorrect = quizScores[String(currentSlideIndex)] === true;
                         const selected = questionAnswer ?? (alreadyAnswered ? undefined : null);
                         const showFeedback = questionSubmitted || alreadyAnswered;
                         return (
