@@ -44,7 +44,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => {
               const isActiveLink = isActive(item.path);
               const linkClass = `text-sm font-medium transition-colors duration-200 pb-1 ${isActiveLink
@@ -64,7 +64,7 @@ const Navbar = () => {
             })}
 
             {/* Dark Mode Toggle & Auth Section */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-3 lg:gap-4 ml-1">
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -174,7 +174,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={() => setShowAuthModal(true)}
-                  className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+                  className="inline-flex items-center justify-center whitespace-nowrap min-w-24 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors shadow-sm"
                 >
                   Sign In
                 </button>
@@ -226,7 +226,7 @@ const Navbar = () => {
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <button
                   onClick={toggleTheme}
-                  className="w-full text-left px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md flex items-center space-x-2"
+                  className="w-full text-left px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md inline-flex items-center gap-2"
                 >
                   {isDark ? (
                     <>

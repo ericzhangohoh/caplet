@@ -49,6 +49,10 @@ const faqData = [
 const Home = () => {
   const { courses } = useCourses();
   const featuredCourses = useMemo(() => courses.slice(0, 3), [courses]);
+  const totalLessons = useMemo(
+    () => courses.reduce((count, course) => count + (course?.lessons?.length || 0), 0),
+    [courses]
+  );
   const [openFaq, setOpenFaq] = useState(new Set());
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -99,6 +103,26 @@ const Home = () => {
               <p className="text-lg md:text-xl leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.85)' }}>
                 CapletEdu delivers structured lessons tailored to the Australian context, designed for high school students and integrated into school curricula.
               </p>
+              <div className="flex flex-wrap gap-3 mb-8">
+                {[
+                  { label: 'Courses', value: courses.length || 'Growing' },
+                  { label: 'Lesson library', value: totalLessons || 'Updated weekly' },
+                  { label: 'Access', value: 'Free for students' },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-lg px-3.5 py-2 border"
+                    style={{
+                      borderColor: 'rgba(255,255,255,0.24)',
+                      background: 'rgba(255,255,255,0.1)',
+                      backdropFilter: 'blur(6px)',
+                    }}
+                  >
+                    <p className="text-xs uppercase tracking-wide font-semibold" style={{ color: 'rgba(255,255,255,0.74)' }}>{item.label}</p>
+                    <p className="text-sm font-semibold" style={{ color: '#fff' }}>{item.value}</p>
+                  </div>
+                ))}
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/courses"
@@ -128,9 +152,10 @@ const Home = () => {
                 }}
               >
                 <div
-                  className="rounded-xl overflow-hidden pointer-events-none"
+                  className="rounded-2xl overflow-hidden border"
                   style={{
                     background: 'var(--surface-soft)',
+                    borderColor: 'color-mix(in srgb, var(--accent) 24%, var(--line-soft))',
                     boxShadow: '0 25px 60px -12px rgba(0, 0, 0, 0.35), 0 12px 24px -8px rgba(0, 0, 0, 0.2)',
                   }}
                 >
@@ -173,10 +198,15 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="px-6 py-3 flex justify-end border-t" style={{ borderColor: 'var(--line-soft)', background: 'var(--surface-raised)' }}>
-                    <div className="px-4 py-2 rounded-md text-sm font-semibold" style={{ background: 'var(--accent)', color: '#fff' }}>
+                  <div className="px-6 py-3 flex justify-between items-center border-t" style={{ borderColor: 'var(--line-soft)', background: 'var(--surface-raised)' }}>
+                    <p className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>Click to open course content</p>
+                    <Link
+                      to="/courses"
+                      className="px-4 py-2 rounded-md text-sm font-semibold transition-transform hover:scale-[1.02]"
+                      style={{ background: 'var(--accent)', color: '#fff' }}
+                    >
                       Continue →
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
